@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Minifier - Minify HTML Code Online | SEOToolsK</title>
+    <meta name="description" content="Free online HTML minifier tool to compress HTML code by removing unnecessary characters, whitespace, and comments to reduce file size.">
+    <meta name="keywords" content="html minifier, minify html, html compression, compress html, remove whitespace, html optimizer">
+    <meta name="author" content="SEOToolsK.com">
+    <link rel="canonical" href="https://seotoolsk.com/tools/html-minifier.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="HTML Minifier - Minify HTML Code Online | SEOToolsK">
+    <meta property="og:description" content="Free online HTML minifier tool to compress HTML code by removing unnecessary characters, whitespace, and comments to reduce file size.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seotoolsk.com/tools/html-minifier.html">
+    <meta property="og:image" content="https://seotoolsk.com/images/seotoolsk-logo.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HTML Minifier - Minify HTML Code Online | SEOToolsK">
+    <meta name="twitter:description" content="Free online HTML minifier tool to compress HTML code by removing unnecessary characters, whitespace, and comments to reduce file size.">
+    <meta name="twitter:image" content="https://seotoolsk.com/images/seotoolsk-logo.png">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Code Mirror for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/eclipse.min.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <!-- Tool Header -->
+        <section class="tool-header tool-detail-header developer-category">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <div class="tool-detail-icon mx-auto developer-category">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h1>HTML Minifier</h1>
+                        <p class="lead">Minify your HTML by removing all unnecessary characters</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Tool Content -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="tool-detail-container">
+                        <!-- Tool Instructions -->
+                        <div class="tool-instructions">
+                            <h5><i class="fas fa-info-circle me-2"></i>How It Works</h5>
+                            <p>Paste your HTML code in the input area below, adjust the minification options if needed, and click the "Minify HTML" button. The tool will compress your HTML by removing unnecessary whitespace, comments, and other characters without affecting functionality.</p>
+                        </div>
+
+                        <!-- Ad Section - Top -->
+                        <div class="ad-container text-center">
+                            <div class="ad-placeholder">
+                                <p><i class="fas fa-ad me-2"></i>Advertisement Space</p>
+                            </div>
+                        </div>
+
+                        <!-- Tool Content -->
+                        <div class="tool-content mt-4">
+                            <div class="card mb-4">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0"><i class="fas fa-code me-2"></i>Input HTML</h5>
+                                </div>
+                                <div class="card-body">
+                                    <textarea id="htmlInput" class="form-control code-editor" rows="12" placeholder="Paste your HTML code here..."></textarea>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <button id="clearBtn" class="btn btn-outline-secondary me-2"><i class="fas fa-eraser me-2"></i>Clear</button>
+                                            <button id="pasteExampleBtn" class="btn btn-outline-primary"><i class="fas fa-copy me-2"></i>Paste Example</button>
+                                        </div>
+                                        <div>
+                                            <span id="inputStats" class="text-muted me-3">Characters: 0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Options Panel -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0"><i class="fas fa-sliders-h me-2"></i>Minification Options</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="removeComments" checked>
+                                                <label class="form-check-label" for="removeComments">Remove Comments</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="removeWhitespace" checked>
+                                                <label class="form-check-label" for="removeWhitespace">Remove Whitespace</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="collapseBoolean" checked>
+                                                <label class="form-check-label" for="collapseBoolean">Collapse Boolean Attributes</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="removeOptionalTags">
+                                                <label class="form-check-label" for="removeOptionalTags">Remove Optional Tags</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="removeAttributeQuotes">
+                                                <label class="form-check-label" for="removeAttributeQuotes">Remove Attribute Quotes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-grid gap-2 mb-4">
+                                <button id="minifyBtn" class="btn btn-primary btn-lg"><i class="fas fa-compress-alt me-2"></i>Minify HTML</button>
+                            </div>
+
+                            <!-- Output Panel -->
+                            <div class="card mb-4">
+                                <div class="card-header bg-light">
+                                    <h5 class="mb-0"><i class="fas fa-code me-2"></i>Minified HTML</h5>
+                                </div>
+                                <div class="card-body">
+                                    <textarea id="htmlOutput" class="form-control code-editor" rows="12" placeholder="Minified HTML will appear here..." readonly></textarea>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <button id="copyBtn" class="btn btn-outline-success me-2" disabled><i class="fas fa-copy me-2"></i>Copy to Clipboard</button>
+                                            <button id="downloadBtn" class="btn btn-outline-primary" disabled><i class="fas fa-download me-2"></i>Download</button>
+                                        </div>
+                                        <div>
+                                            <span id="outputStats" class="text-muted">Characters: 0 | Reduction: 0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Related Tools -->
+                        <div class="related-tools mt-5">
+                            <h3 class="mb-4">Related Tools</h3>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 mb-4">
+                                    <a href="css-minifier.html" class="text-decoration-none">
+                                        <div class="tool-card h-100">
+                                            <div class="card-body">
+                                                <div class="tool-icon developer-category">
+                                                    <i class="fab fa-css3-alt"></i>
+                                                </div>
+                                                <h5 class="card-title">CSS Minifier</h5>
+                                                <p class="card-text">Minify your CSS by removing all the unnecessary characters.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 col-sm-6 mb-4">
+                                    <a href="js-minifier.html" class="text-decoration-none">
+                                        <div class="tool-card h-100">
+                                            <div class="card-body">
+                                                <div class="tool-icon developer-category">
+                                                    <i class="fab fa-js"></i>
+                                                </div>
+                                                <h5 class="card-title">JS Minifier</h5>
+                                                <p class="card-text">Minify your JavaScript code by removing unnecessary characters.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 col-sm-6 mb-4">
+                                    <a href="html-to-markdown.html" class="text-decoration-none">
+                                        <div class="tool-card h-100">
+                                            <div class="card-body">
+                                                <div class="tool-icon developer-category">
+                                                    <i class="fab fa-markdown"></i>
+                                                </div>
+                                                <h5 class="card-title">HTML to Markdown</h5>
+                                                <p class="card-text">Convert HTML code to Markdown syntax for easier editing.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Section -->
+                        <div class="faq-section mt-5">
+                            <h3 class="mb-4">Frequently Asked Questions</h3>
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            What is HTML minification?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            HTML minification is the process of removing unnecessary characters from HTML source code without changing its functionality. This includes removing whitespace, comments, and optional elements/attributes to reduce file size. Minified HTML loads faster, which improves page loading times and user experience.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Is it safe to minify HTML?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, it's generally safe to minify HTML as the process only removes redundant characters while preserving the functionality. However, in rare cases, some JavaScript or CSS within the HTML might be sensitive to whitespace removal. It's always a good practice to test your minified HTML before deploying it to a production environment.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            How much file size reduction can I expect?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            The amount of file size reduction varies depending on the original HTML code. Typically, you can expect a reduction of 10-25% for most HTML files. HTML files with extensive comments and indentation may see even higher reduction percentages, sometimes up to 40-50%.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingFour">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Is HTML minification the same as compression?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            No, HTML minification and compression are different techniques. Minification removes unnecessary characters from the source code, while compression (like GZIP or Brotli) applies an algorithm to reduce the file size during transit. They are complementary techniques, and using both together provides the best results for web performance optimization.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ad Section - Bottom -->
+                        <div class="ad-container text-center mt-5">
+                            <div class="ad-placeholder">
+                                <p><i class="fas fa-ad me-2"></i>Advertisement Space</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CodeMirror for syntax highlighting
+            const inputEditor = CodeMirror.fromTextArea(document.getElementById('htmlInput'), {
+                mode: 'htmlmixed',
+                theme: 'eclipse',
+                lineNumbers: true,
+                lineWrapping: true
+            });
+            
+            const outputEditor = CodeMirror.fromTextArea(document.getElementById('htmlOutput'), {
+                mode: 'htmlmixed',
+                theme: 'eclipse',
+                lineNumbers: true,
+                lineWrapping: true,
+                readOnly: true
+            });
+            
+            // Update input stats when text changes
+            inputEditor.on('change', function() {
+                const value = inputEditor.getValue();
+                document.getElementById('inputStats').textContent = 'Characters: ' + value.length;
+            });
+            
+            // Minify HTML function
+            document.getElementById('minifyBtn').addEventListener('click', function() {
+                const input = inputEditor.getValue();
+                if (!input.trim()) {
+                    showNotification('Please enter some HTML code first.', 'error');
+                    return;
+                }
+                
+                try {
+                    let minified = input;
+                    const options = {
+                        removeComments: document.getElementById('removeComments').checked,
+                        removeWhitespace: document.getElementById('removeWhitespace').checked,
+                        collapseBoolean: document.getElementById('collapseBoolean').checked,
+                        removeOptionalTags: document.getElementById('removeOptionalTags').checked,
+                        removeAttributeQuotes: document.getElementById('removeAttributeQuotes').checked
+                    };
+                    
+                    // Simple HTML minification
+                    if (options.removeComments) {
+                        minified = minified.replace(/<!--[\s\S]*?-->/g, '');
+                    }
+                    
+                    if (options.removeWhitespace) {
+                        // Remove whitespace between tags
+                        minified = minified.replace(/>\s+</g, '><');
+                        // Remove whitespace at the beginning and end of each line
+                        minified = minified.replace(/^\s+|\s+$/gm, '');
+                        // Replace multiple spaces with a single space
+                        minified = minified.replace(/\s{2,}/g, ' ');
+                    }
+                    
+                    if (options.collapseBoolean) {
+                        // Convert checked="checked" to checked
+                        minified = minified.replace(/(\s)(checked|selected|disabled|readonly|required|multiple|autofocus|novalidate|formnovalidate|async|defer|hidden)="(checked|selected|disabled|readonly|required|multiple|autofocus|novalidate|formnovalidate|async|defer|hidden)"/gi, '$1$2');
+                    }
+                    
+                    if (options.removeAttributeQuotes) {
+                        // Remove quotes from attributes when possible
+                        minified = minified.replace(/="\s*([^"\s>]*)\s*"/g, '=$1');
+                    }
+                    
+                    // Update output
+                    outputEditor.setValue(minified);
+                    
+                    // Enable buttons
+                    document.getElementById('copyBtn').disabled = false;
+                    document.getElementById('downloadBtn').disabled = false;
+                    
+                    // Update stats
+                    const originalLength = input.length;
+                    const minifiedLength = minified.length;
+                    const reduction = originalLength > 0 ? ((originalLength - minifiedLength) / originalLength * 100).toFixed(2) : 0;
+                    document.getElementById('outputStats').textContent = 'Characters: ' + minifiedLength + ' | Reduction: ' + reduction + '%';
+                    
+                    showNotification('HTML minified successfully!', 'success');
+                } catch (error) {
+                    showNotification('Error minifying HTML: ' + error.message, 'error');
+                }
+            });
+            
+            // Copy to clipboard
+            document.getElementById('copyBtn').addEventListener('click', function() {
+                const output = outputEditor.getValue();
+                if (!output.trim()) return;
+                
+                navigator.clipboard.writeText(output).then(function() {
+                    showNotification('Minified HTML copied to clipboard!', 'success');
+                }, function() {
+                    showNotification('Failed to copy text.', 'error');
+                });
+            });
+            
+            // Download file
+            document.getElementById('downloadBtn').addEventListener('click', function() {
+                const output = outputEditor.getValue();
+                if (!output.trim()) return;
+                
+                const blob = new Blob([output], {type: 'text/html'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'minified.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showNotification('File downloaded successfully!', 'success');
+            });
+            
+            // Clear input
+            document.getElementById('clearBtn').addEventListener('click', function() {
+                inputEditor.setValue('');
+                document.getElementById('inputStats').textContent = 'Characters: 0';
+                showNotification('Input cleared.', 'info');
+            });
+            
+            // Paste example
+            document.getElementById('pasteExampleBtn').addEventListener('click', function() {
+                const exampleHtml = [
+                    '<!DOCTYPE html>',
+                    '<html lang="en">',
+                    '<head>',
+                    '    <meta charset="UTF-8">',
+                    '    <title>Example HTML</title>',
+                    '    <!-- This is a comment that will be removed -->',
+                    '    <style>',
+                    '        body {',
+                    '            font-family: Arial, sans-serif;',
+                    '            margin: 0;',
+                    '            padding: 20px;',
+                    '        }',
+                    '        .container {',
+                    '            max-width: 800px;',
+                    '            margin: 0 auto;',
+                    '        }',
+                    '    </style>',
+                    '</head>',
+                    '<body>',
+                    '    <div class="container">',
+                    '        <h1>Hello World</h1>',
+                    '        <!-- This is another comment -->',
+                    '        <p>This is an example HTML file with unnecessary whitespace.</p>',
+                    '        <ul>',
+                    '            <li>Item 1</li>',
+                    '            <li>Item 2</li>',
+                    '            <li>Item 3</li>',
+                    '        </ul>',
+                    '        <form action="/submit" method="post">',
+                    '            <input type="text" required="required">',
+                    '            <button type="submit" disabled="disabled">Submit</button>',
+                    '        </form>',
+                    '    </div>',
+                    '</body>',
+                    '</html>'
+                ].join('\n');
+                
+                inputEditor.setValue(exampleHtml);
+                document.getElementById('inputStats').textContent = 'Characters: ' + exampleHtml.length;
+                showNotification('Example HTML loaded.', 'info');
+            });
+            
+            // Notification helper
+            function showNotification(message, type) {
+                if (window.showNotification) {
+                    window.showNotification(message, type);
+                } else {
+                    alert(message);
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

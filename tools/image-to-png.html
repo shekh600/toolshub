@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PNG Converter - Convert JPG, WEBP to PNG Online</title>
+    <meta name="description" content="Free online image to PNG converter. Convert JPG, WEBP, GIF, and other image formats to PNG with transparency support.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .drop-zone {
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            background-color: #f8fafc;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .drop-zone:hover, .drop-zone.drag-over {
+            border-color: var(--primary-color);
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .drop-zone .icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .drop-zone:hover .icon {
+            transform: translateY(-5px);
+        }
+        
+        .preview-container {
+            max-width: 100%;
+            overflow: hidden;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-info {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .file-info table {
+            width: 100%;
+        }
+        
+        .file-info td {
+            padding: 8px 0;
+        }
+        
+        .file-info td:first-child {
+            font-weight: 600;
+            color: var(--gray-color);
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <!-- Tool Header -->
+        <section class="tool-header text-center">
+            <div class="container">
+                <div class="tool-icon mx-auto mb-3" style="background-color: rgba(37, 99, 235, 0.1);">
+                    <i class="far fa-file-image"></i>
+                </div>
+                <h1>Image to PNG Converter</h1>
+                <p class="lead">Convert JPG, WEBP, GIF, or other image formats to PNG with transparency support</p>
+            </div>
+        </section>
+
+        <!-- Ad Section - Top -->
+        <div class="ad-container text-center my-4">
+            <div class="ad-placeholder">
+                <p>Advertisement Space</p>
+                <!-- Ad code will go here -->
+            </div>
+        </div>
+
+        <!-- Tool Container -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <div class="tool-instructions alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <span>Upload an image in any format (JPG, WEBP, GIF, etc.) to convert it to PNG format. PNG format supports transparency and is ideal for graphics, logos, and images requiring a transparent background.</span>
+                    </div>
+
+                    <!-- Upload Section -->
+                    <div id="dropZone" class="drop-zone mb-4">
+                        <div class="icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3 class="mb-3">Drop your image here</h3>
+                        <p class="text-muted mb-3">or</p>
+                        <input type="file" id="fileInput" accept="image/*" class="d-none">
+                        <button id="browseButton" class="btn btn-primary">
+                            <i class="fas fa-folder-open me-2"></i>Browse Files
+                        </button>
+                        <p class="text-muted mt-3">Supports JPG, JPEG, WEBP, GIF, BMP, etc.</p>
+                    </div>
+
+                    <!-- Preview Section (hidden by default) -->
+                    <div id="previewSection" class="d-none">
+                        <div class="preview-container">
+                            <img id="previewImage" class="preview-image" src="#" alt="Preview">
+                        </div>
+                        
+                        <div class="file-info">
+                            <table class="table table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td>File Name:</td>
+                                        <td id="fileName">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Original Format:</td>
+                                        <td id="fileFormat">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>File Size:</td>
+                                        <td id="fileSize">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions:</td>
+                                        <td id="fileDimensions">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button id="convertButton" class="btn btn-primary">
+                                <i class="fas fa-exchange-alt me-2"></i>Convert to PNG
+                            </button>
+                            <button id="removeButton" class="btn btn-outline-secondary">
+                                <i class="fas fa-trash-alt me-2"></i>Remove
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Result Section (hidden by default) -->
+                    <div id="resultSection" class="d-none">
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <span>Conversion completed successfully!</span>
+                        </div>
+                        
+                        <div class="preview-container">
+                            <img id="resultImage" class="preview-image" src="#" alt="Converted PNG">
+                        </div>
+                        
+                        <div class="file-info">
+                            <table class="table table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td>File Name:</td>
+                                        <td id="pngFileName">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Format:</td>
+                                        <td>PNG</td>
+                                    </tr>
+                                    <tr>
+                                        <td>File Size:</td>
+                                        <td id="pngFileSize">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dimensions:</td>
+                                        <td id="pngDimensions">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button id="downloadButton" class="btn btn-success">
+                                <i class="fas fa-download me-2"></i>Download PNG
+                            </button>
+                            <button id="convertAnotherButton" class="btn btn-outline-primary">
+                                <i class="fas fa-redo me-2"></i>Convert Another
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How to Use Section -->
+                <div class="tool-container mt-4">
+                    <h3>How to Convert Images to PNG</h3>
+                    <ol>
+                        <li>Upload your image by dropping it into the upload area or clicking "Browse Files".</li>
+                        <li>Preview your image and check the file details.</li>
+                        <li>Click "Convert to PNG" to start the conversion process.</li>
+                        <li>Once conversion is complete, preview your PNG image.</li>
+                        <li>Click "Download PNG" to save the converted image to your device.</li>
+                    </ol>
+                    
+                    <h4 class="mt-4">About PNG Format</h4>
+                    <p>PNG (Portable Network Graphics) is a raster graphics file format that supports lossless data compression. Key features include:</p>
+                    <ul>
+                        <li><strong>Transparency support:</strong> PNG files can have transparent backgrounds, making them ideal for logos, icons, and graphics.</li>
+                        <li><strong>Lossless compression:</strong> PNG uses lossless compression, meaning no image quality is lost during compression.</li>
+                        <li><strong>Wide color support:</strong> PNG supports a wide range of colors, including RGB and indexed color modes.</li>
+                        <li><strong>Internet standard:</strong> PNG is widely supported by web browsers and image editing software.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Sidebar Ad Container -->
+                <div class="ad-container mb-4">
+                    <div class="ad-placeholder">
+                        <p>Advertisement Space</p>
+                        <!-- Ad code will go here -->
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Related Tools</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="image-to-jpg.html" class="list-group-item list-group-item-action">
+                            <i class="far fa-file-image me-2 text-primary"></i>Image to JPG Converter
+                        </a>
+                        <a href="image-resizer.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-expand-arrows-alt me-2 text-primary"></i>Image Resizer
+                        </a>
+                        <a href="image-compressor.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-compress-arrows-alt me-2 text-primary"></i>Image Compressor
+                        </a>
+                        <a href="image-cropper.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-crop-alt me-2 text-primary"></i>Image Cropper
+                        </a>
+                        <a href="webp-to-png.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-exchange-alt me-2 text-primary"></i>WebP to PNG Converter
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Frequently Asked Questions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        Is this service completely free?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, our Image to PNG converter is completely free to use, with no hidden fees or limits on file conversions.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        Is my data secure when using this tool?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Absolutely! All image processing happens directly in your browser. Your images are never uploaded to our servers, ensuring complete privacy and security.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        What's the maximum file size I can convert?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Since processing happens in your browser, the maximum file size depends on your device's memory. Generally, you can convert images up to 50MB, but for optimal performance, we recommend keeping files under 20MB.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        Will the PNG maintain image transparency?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, if your original image has transparency (like a WebP or PNG with transparency), the converted PNG will preserve the transparent areas. JPG files don't support transparency, so nothing will be lost when converting from JPG.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad Section - Bottom -->
+        <div class="ad-container text-center my-4">
+            <div class="ad-placeholder">
+                <p>Advertisement Space</p>
+                <!-- Ad code will go here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const browseButton = document.getElementById('browseButton');
+            const previewSection = document.getElementById('previewSection');
+            const previewImage = document.getElementById('previewImage');
+            const fileName = document.getElementById('fileName');
+            const fileFormat = document.getElementById('fileFormat');
+            const fileSize = document.getElementById('fileSize');
+            const fileDimensions = document.getElementById('fileDimensions');
+            const convertButton = document.getElementById('convertButton');
+            const removeButton = document.getElementById('removeButton');
+            const resultSection = document.getElementById('resultSection');
+            const resultImage = document.getElementById('resultImage');
+            const pngFileName = document.getElementById('pngFileName');
+            const pngFileSize = document.getElementById('pngFileSize');
+            const pngDimensions = document.getElementById('pngDimensions');
+            const downloadButton = document.getElementById('downloadButton');
+            const convertAnotherButton = document.getElementById('convertAnotherButton');
+            
+            let currentFile = null;
+            
+            // Browse button click handler
+            browseButton.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // File input change handler
+            fileInput.addEventListener('change', function(e) {
+                handleFiles(e.target.files);
+            });
+            
+            // Drag and drop handlers
+            dropZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+            
+            dropZone.addEventListener('dragleave', function() {
+                dropZone.classList.remove('drag-over');
+            });
+            
+            dropZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                handleFiles(e.dataTransfer.files);
+            });
+            
+            // Convert button click handler
+            convertButton.addEventListener('click', function() {
+                convertToPNG();
+            });
+            
+            // Remove button click handler
+            removeButton.addEventListener('click', function() {
+                resetTool();
+            });
+            
+            // Download button click handler
+            downloadButton.addEventListener('click', function() {
+                downloadPNG();
+            });
+            
+            // Convert another button click handler
+            convertAnotherButton.addEventListener('click', function() {
+                resetTool();
+            });
+            
+            // Handle file uploads
+            function handleFiles(files) {
+                if (files.length === 0) return;
+                
+                const file = files[0];
+                
+                // Check if file is an image
+                if (!file.type.startsWith('image/')) {
+                    showNotification('Please select an image file.', 'error');
+                    return;
+                }
+                
+                currentFile = file;
+                
+                // Display file information
+                fileName.textContent = file.name;
+                fileFormat.textContent = file.type.split('/')[1].toUpperCase();
+                fileSize.textContent = formatFileSize(file.size);
+                
+                // Create a preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    
+                    // Get image dimensions
+                    const img = new Image();
+                    img.onload = function() {
+                        fileDimensions.textContent = `${img.width} × ${img.height} px`;
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                
+                // Show preview section
+                dropZone.classList.add('d-none');
+                previewSection.classList.remove('d-none');
+                resultSection.classList.add('d-none');
+            }
+            
+            // Convert image to PNG
+            function convertToPNG() {
+                if (!currentFile) return;
+                
+                // Simulate conversion process with loading state
+                convertButton.disabled = true;
+                convertButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Converting...';
+                
+                setTimeout(function() {
+                    // Create a canvas to convert the image
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        
+                        // Get the PNG data URL
+                        const pngDataUrl = canvas.toDataURL('image/png');
+                        
+                        // Display the converted image
+                        resultImage.src = pngDataUrl;
+                        
+                        // Update result information
+                        const newFileName = currentFile.name.replace(/\.[^/.]+$/, "") + '.png';
+                        pngFileName.textContent = newFileName;
+                        pngDimensions.textContent = `${img.width} × ${img.height} px`;
+                        
+                        // Estimate PNG file size (this is just an approximation)
+                        fetch(pngDataUrl)
+                            .then(res => res.blob())
+                            .then(blob => {
+                                pngFileSize.textContent = formatFileSize(blob.size);
+                                
+                                // Store the blob for download
+                                window.convertedPngBlob = blob;
+                            })
+                            .catch(error => {
+                                console.error('Error calculating file size:', error);
+                                pngFileSize.textContent = 'Unknown';
+                            });
+                        
+                        // Show result section
+                        previewSection.classList.add('d-none');
+                        resultSection.classList.remove('d-none');
+                        
+                        // Reset button state
+                        convertButton.disabled = false;
+                        convertButton.innerHTML = '<i class="fas fa-exchange-alt me-2"></i>Convert to PNG';
+                        
+                        // Show success notification
+                        if (typeof showNotification === 'function') {
+                            showNotification('Image successfully converted to PNG!', 'success');
+                        } else {
+                            alert('Image successfully converted to PNG!');
+                        }
+                    };
+                    
+                    img.src = URL.createObjectURL(currentFile);
+                }, 1500); // Simulate processing time
+            }
+            
+            // Download the converted PNG
+            function downloadPNG() {
+                if (!resultImage.src || resultImage.src === '#') return;
+                
+                // Create a download link
+                const link = document.createElement('a');
+                const fileName = currentFile.name.replace(/\.[^/.]+$/, "") + '.png';
+                
+                // If we have a blob from earlier
+                if (window.convertedPngBlob) {
+                    link.href = URL.createObjectURL(window.convertedPngBlob);
+                } else {
+                    link.href = resultImage.src;
+                }
+                
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show success notification
+                if (typeof showNotification === 'function') {
+                    showNotification('PNG downloaded successfully!', 'success');
+                }
+            }
+            
+            // Reset the tool
+            function resetTool() {
+                currentFile = null;
+                fileInput.value = '';
+                previewImage.src = '#';
+                resultImage.src = '#';
+                window.convertedPngBlob = null;
+                
+                dropZone.classList.remove('d-none');
+                previewSection.classList.add('d-none');
+                resultSection.classList.add('d-none');
+            }
+            
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Custom notification function if common.js is not loaded
+            if (typeof showNotification !== 'function') {
+                window.showNotification = function(message, type = 'info') {
+                    // Create a custom notification if the common.js version is not available
+                    const notification = document.createElement('div');
+                    notification.className = `notification notification-${type}`;
+                    notification.style.position = 'fixed';
+                    notification.style.bottom = '20px';
+                    notification.style.right = '20px';
+                    notification.style.background = 'white';
+                    notification.style.padding = '15px 20px';
+                    notification.style.borderRadius = '8px';
+                    notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                    notification.style.zIndex = '9999';
+                    notification.style.transition = 'all 0.3s ease';
+                    notification.style.transform = 'translateY(0)';
+                    notification.style.opacity = '1';
+                    
+                    if (type === 'success') {
+                        notification.style.borderLeft = '4px solid #10b981';
+                    } else if (type === 'error') {
+                        notification.style.borderLeft = '4px solid #ef4444';
+                    } else {
+                        notification.style.borderLeft = '4px solid #0ea5e9';
+                    }
+                    
+                    notification.innerHTML = `<div>${message}</div>`;
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.opacity = '0';
+                        notification.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 300);
+                    }, 3000);
+                };
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a6cf7" />
+      <stop offset="100%" stop-color="#8c6fef" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Background Elements -->
+  <circle cx="50" cy="50" r="10" fill="#f1f5f9" />
+  <circle cx="350" cy="250" r="15" fill="#f1f5f9" />
+  <circle cx="300" cy="50" r="20" fill="#f1f5f9" />
+  <circle cx="100" cy="230" r="18" fill="#f1f5f9" />
+
+  <!-- Main Illustration -->
+  <g transform="translate(80, 30)" filter="url(#shadow)">
+    <!-- Device Frame -->
+    <rect x="0" y="0" width="240" height="180" rx="10" fill="white" />
+    
+    <!-- Screen Content -->
+    <rect x="10" y="10" width="220" height="140" rx="5" fill="#f8fafc" />
+    
+    <!-- Website Header -->
+    <rect x="10" y="10" width="220" height="30" rx="5" fill="url(#gradient)" />
+    <circle cx="25" cy="25" r="5" fill="white" />
+    <rect x="40" y="20" width="60" height="10" rx="2" fill="white" opacity="0.8" />
+    <rect x="150" y="20" width="20" height="10" rx="2" fill="white" opacity="0.6" />
+    <rect x="180" y="20" width="20" height="10" rx="2" fill="white" opacity="0.6" />
+    <rect x="210" y="20" width="10" height="10" rx="2" fill="white" opacity="0.6" />
+    
+    <!-- Content Cards -->
+    <rect x="20" y="50" width="60" height="60" rx="5" fill="white" />
+    <rect x="25" y="55" width="50" height="25" rx="3" fill="#e2e8f0" />
+    <rect x="25" y="85" width="40" height="5" rx="1" fill="#94a3b8" />
+    <rect x="25" y="95" width="30" height="5" rx="1" fill="#94a3b8" />
+    
+    <rect x="90" y="50" width="60" height="60" rx="5" fill="white" />
+    <rect x="95" y="55" width="50" height="25" rx="3" fill="#e2e8f0" />
+    <rect x="95" y="85" width="40" height="5" rx="1" fill="#94a3b8" />
+    <rect x="95" y="95" width="30" height="5" rx="1" fill="#94a3b8" />
+    
+    <rect x="160" y="50" width="60" height="60" rx="5" fill="white" />
+    <rect x="165" y="55" width="50" height="25" rx="3" fill="#e2e8f0" />
+    <rect x="165" y="85" width="40" height="5" rx="1" fill="#94a3b8" />
+    <rect x="165" y="95" width="30" height="5" rx="1" fill="#94a3b8" />
+    
+    <!-- Search Bar -->
+    <rect x="20" y="120" width="200" height="20" rx="10" fill="white" stroke="#e2e8f0" stroke-width="1" />
+    <circle cx="30" cy="130" r="5" fill="#94a3b8" />
+    <rect x="40" y="127" width="100" height="6" rx="1" fill="#e2e8f0" />
+    <rect x="200" y="120" width="20" height="20" rx="10" fill="url(#gradient)" />
+    <path d="M205,130 L215,130" stroke="white" stroke-width="2" stroke-linecap="round" />
+    <path d="M210,125 L210,135" stroke="white" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Base & Stand -->
+    <rect x="90" y="180" width="60" height="10" rx="2" fill="#94a3b8" />
+    <rect x="110" y="190" width="20" height="15" rx="2" fill="#64748b" />
+    <rect x="100" y="205" width="40" height="5" rx="2" fill="#94a3b8" />
+  </g>
+
+  <!-- Floating Elements -->
+  <g transform="translate(30, 100)">
+    <circle cx="0" cy="0" r="25" fill="white" filter="url(#shadow)" />
+    <path d="M-10,-10 L10,10 M-10,10 L10,-10" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+  </g>
+  
+  <g transform="translate(330, 100)">
+    <circle cx="0" cy="0" r="25" fill="white" filter="url(#shadow)" />
+    <rect x="-10" y="-10" width="20" height="20" rx="2" fill="url(#gradient)" />
+  </g>
+  
+  <g transform="translate(40, 220)">
+    <circle cx="0" cy="0" r="20" fill="white" filter="url(#shadow)" />
+    <path d="M-8,0 L8,0 M0,-8 L0,8" stroke="url(#gradient)" stroke-width="3" stroke-linecap="round" />
+  </g>
+  
+  <g transform="translate(330, 210)">
+    <circle cx="0" cy="0" r="20" fill="white" filter="url(#shadow)" />
+    <path d="M-5,-5 L5,-5 L5,5 L-5,5 Z" stroke="url(#gradient)" stroke-width="3" fill="none" />
+  </g>
+</svg> 

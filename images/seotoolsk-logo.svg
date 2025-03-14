@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a6cf7" />
+      <stop offset="100%" stop-color="#8c6fef" />
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="90" fill="white" stroke="url(#gradient)" stroke-width="8" />
+  <g transform="translate(40, 70) scale(0.8)">
+    <path d="M0,0 H120 Q150,0 150,30 V50 Q150,80 120,80 H30 Q0,80 0,50 Z" fill="url(#gradient)" />
+    <text x="15" y="55" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white">SEO</text>
+    <text x="78" y="55" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white">K</text>
+    <path d="M74,30 L74,60" stroke="white" stroke-width="1.5" />
+  </g>
+  <g transform="translate(40, 120)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">TOOLS</text>
+  </g>
+</svg> 

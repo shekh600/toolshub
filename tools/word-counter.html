@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter - Count Words, Characters, Sentences and Paragraphs</title>
+    <meta name="description" content="Free online word counter tool. Count words, characters, sentences, and paragraphs in your text with or without spaces.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header will be loaded dynamically -->
+    <div id="header-placeholder"></div>
+
+    <main class="container py-4">
+        <!-- Tool Header -->
+        <section class="tool-header text-center">
+            <div class="container">
+                <h1><i class="fas fa-calculator me-2"></i>Word Counter</h1>
+                <p class="lead">Count words, characters, sentences, and paragraphs in your text</p>
+            </div>
+        </section>
+
+        <!-- Ad Section - Top -->
+        <div class="ad-container text-center my-4">
+            <div class="ad-placeholder">
+                <p>Advertisement Space</p>
+                <!-- Ad code will go here -->
+            </div>
+        </div>
+
+        <!-- Tool Container -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="tool-container">
+                    <div class="tool-instructions alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <span>Enter or paste your text in the box below to count words, characters, sentences, and paragraphs.</span>
+                    </div>
+
+                    <!-- Text Input Area -->
+                    <div class="form-group mb-4">
+                        <label for="textInput" class="form-label">Your Text:</label>
+                        <textarea id="textInput" class="form-control" rows="10" placeholder="Type or paste your text here..."></textarea>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex mb-4">
+                        <button id="countButton" class="btn btn-primary me-2">
+                            <i class="fas fa-calculator me-2"></i>Count
+                        </button>
+                        <button id="clearButton" class="btn btn-secondary me-2">
+                            <i class="fas fa-trash-alt me-2"></i>Clear
+                        </button>
+                        <button id="copyButton" class="btn btn-success">
+                            <i class="far fa-copy me-2"></i>Copy Text
+                        </button>
+                    </div>
+
+                    <!-- Results Section -->
+                    <div id="resultsSection" class="results-section">
+                        <h3 class="mb-4">Text Statistics</h3>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Words</h5>
+                                        <p id="wordCount" class="display-4 mb-0">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Characters (with spaces)</h5>
+                                        <p id="charCountWithSpaces" class="display-4 mb-0">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Characters (without spaces)</h5>
+                                        <p id="charCountWithoutSpaces" class="display-4 mb-0">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Sentences</h5>
+                                        <p id="sentenceCount" class="display-4 mb-0">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Paragraphs</h5>
+                                        <p id="paragraphCount" class="display-4 mb-0">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Reading Time</h5>
+                                        <p id="readingTime" class="display-4 mb-0">0 min</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How to Use Section -->
+                <div class="tool-container mt-4">
+                    <h3>How to Use the Word Counter Tool</h3>
+                    <ol>
+                        <li>Enter or paste your text in the text area above.</li>
+                        <li>The tool will automatically count the words, characters, sentences, and paragraphs.</li>
+                        <li>View the results in the statistics section.</li>
+                        <li>Click the "Copy Text" button to copy your text to clipboard.</li>
+                        <li>Click the "Clear" button to reset the text area and results.</li>
+                    </ol>
+                    <p>You can use this tool to check the word count for essays, articles, blog posts, assignments, or any other written content.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Sidebar Ad Container -->
+                <div class="ad-container mb-4">
+                    <div class="ad-placeholder">
+                        <p>Advertisement Space</p>
+                        <!-- Ad code will go here -->
+                    </div>
+                </div>
+
+                <!-- Related Tools -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Related Tools</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="character-counter.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-text-width me-2"></i>Character Counter
+                        </a>
+                        <a href="case-converter.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-font me-2"></i>Case Converter
+                        </a>
+                        <a href="text-to-speech.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-volume-up me-2"></i>Text to Speech
+                        </a>
+                        <a href="grammar-checker.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-spell-check me-2"></i>Grammar Checker
+                        </a>
+                        <a href="random-text-generator.html" class="list-group-item list-group-item-action">
+                            <i class="fas fa-random me-2"></i>Random Text Generator
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Frequently Asked Questions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        How does the word count tool work?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The word count tool uses JavaScript to analyze your text and count the number of words, characters, sentences, and paragraphs. Words are separated by spaces, sentences by periods, and paragraphs by line breaks.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        Is my text secure when using this tool?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, all text processing happens locally in your browser. We do not store your text on our servers, and no data is transmitted over the internet.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        How is reading time calculated?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Reading time is calculated based on an average reading speed of 200-250 words per minute for an adult with average reading skills.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad Section - Bottom -->
+        <div class="ad-container text-center my-4">
+            <div class="ad-placeholder">
+                <p>Advertisement Space</p>
+                <!-- Ad code will go here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded dynamically -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textInput = document.getElementById('textInput');
+            const countButton = document.getElementById('countButton');
+            const clearButton = document.getElementById('clearButton');
+            const copyButton = document.getElementById('copyButton');
+            const wordCount = document.getElementById('wordCount');
+            const charCountWithSpaces = document.getElementById('charCountWithSpaces');
+            const charCountWithoutSpaces = document.getElementById('charCountWithoutSpaces');
+            const sentenceCount = document.getElementById('sentenceCount');
+            const paragraphCount = document.getElementById('paragraphCount');
+            const readingTime = document.getElementById('readingTime');
+            
+            // Auto count on input
+            textInput.addEventListener('input', countText);
+            
+            // Count button click
+            countButton.addEventListener('click', countText);
+            
+            // Clear button click
+            clearButton.addEventListener('click', function() {
+                textInput.value = '';
+                countText();
+            });
+            
+            // Copy button click
+            copyButton.addEventListener('click', function() {
+                // Use the clipboard API if available
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(textInput.value)
+                        .then(() => {
+                            if (typeof showNotification === 'function') {
+                                showNotification('Text copied to clipboard!', 'success');
+                            } else {
+                                alert('Text copied to clipboard!');
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy: ', err);
+                            // Fallback to selection + execCommand
+                            fallbackCopyTextToClipboard(textInput.value);
+                        });
+                } else {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(textInput.value);
+                }
+            });
+            
+            // Fallback copy method for older browsers
+            function fallbackCopyTextToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                
+                // Make the textarea out of viewport
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                textArea.style.top = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        if (typeof showNotification === 'function') {
+                            showNotification('Text copied to clipboard!', 'success');
+                        } else {
+                            alert('Text copied to clipboard!');
+                        }
+                    } else {
+                        if (typeof showNotification === 'function') {
+                            showNotification('Failed to copy text', 'error');
+                        } else {
+                            alert('Failed to copy text');
+                        }
+                    }
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                    if (typeof showNotification === 'function') {
+                        showNotification('Failed to copy text: ' + err, 'error');
+                    } else {
+                        alert('Failed to copy text: ' + err);
+                    }
+                }
+                
+                document.body.removeChild(textArea);
+            }
+            
+            // Count text function
+            function countText() {
+                const text = textInput.value;
+                
+                // Count words
+                const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+                
+                // Count characters
+                const charsWithSpaces = text.length;
+                const charsWithoutSpaces = text.replace(/\s+/g, '').length;
+                
+                // Count sentences
+                const sentences = text.trim() ? text.split(/[.!?]+/).filter(Boolean).length : 0;
+                
+                // Count paragraphs
+                const paragraphs = text.trim() ? text.split(/\n+/).filter(Boolean).length : 0;
+                
+                // Calculate reading time (avg 225 words per minute)
+                const readingTimeMinutes = Math.ceil(words / 225);
+                
+                // Update the UI
+                wordCount.textContent = words;
+                charCountWithSpaces.textContent = charsWithSpaces;
+                charCountWithoutSpaces.textContent = charsWithoutSpaces;
+                sentenceCount.textContent = sentences;
+                paragraphCount.textContent = paragraphs;
+                readingTime.textContent = `${readingTimeMinutes} min`;
+            }
+            
+            // Custom notification function if common.js is not loaded
+            if (typeof showNotification !== 'function') {
+                window.showNotification = function(message, type = 'info') {
+                    // Create a custom notification if the common.js version is not available
+                    const notification = document.createElement('div');
+                    notification.className = `notification notification-${type}`;
+                    notification.style.position = 'fixed';
+                    notification.style.bottom = '20px';
+                    notification.style.right = '20px';
+                    notification.style.background = 'white';
+                    notification.style.padding = '15px 20px';
+                    notification.style.borderRadius = '8px';
+                    notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                    notification.style.zIndex = '9999';
+                    notification.style.transition = 'all 0.3s ease';
+                    notification.style.transform = 'translateY(0)';
+                    notification.style.opacity = '1';
+                    
+                    if (type === 'success') {
+                        notification.style.borderLeft = '4px solid #10b981';
+                    } else if (type === 'error') {
+                        notification.style.borderLeft = '4px solid #ef4444';
+                    } else {
+                        notification.style.borderLeft = '4px solid #0ea5e9';
+                    }
+                    
+                    notification.innerHTML = `<div>${message}</div>`;
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.opacity = '0';
+                        notification.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 300);
+                    }, 3000);
+                };
+            }
+            
+            // Initial count
+            countText();
+        });
+    </script>
+</body>
+</html> 
